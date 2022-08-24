@@ -1,8 +1,7 @@
-(function () {
-    'use strict';
+
 
     angular
-        .module('app', ['ui.router'])
+        .module('app', ['ui.router','ngTouch','ngAnimate','ui.bootstrap'])
         .config(config)
         .run(run);
 
@@ -35,13 +34,14 @@
                 templateUrl: 'job/index.view.html',
                 controller: 'Job.IndexController',
                 controllerAs: 'vm'
+            })
+            .state('organization', {
+                url: '/organization',
+                templateUrl: 'organization/index.view.html',
+                controller: 'Organization.IndexController',
+                controllerAs: 'vm'
             });
-
-
-
-
     }
 
     function run() {
-    }
-})();
+    };

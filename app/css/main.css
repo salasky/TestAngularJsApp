@@ -10,9 +10,9 @@ body{
     background-color: #FFFFFF;
     min-width: 320px;
 }
-image{
-    max-width: available;
-    max-height: available;
+.navbar-brand>img {
+    margin-bottom:50px;
+    max-width: 85px;
 }
 section{
     padding: 50px 0;
@@ -53,7 +53,7 @@ a:hover{
     font-weight: bold;
     width: 50%;
     background:SteelBlue;
-    margin: 30px 50px;
+    margin: 30px 40px;
     padding: 5px;
     color: white;
 }
@@ -91,13 +91,13 @@ a:hover{
 table {
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     width: 50%;
-    margin: 30px 50px;
-    border: 2px double black; /* Рамка вокруг таблицы */
+    margin: 20px 40px;
+    border: 2px double black;
 
 }
 
 caption {
-    text-align: left;
+    text-align: center;
     color: silver;
     font-weight: bold;
     text-transform: uppercase;
@@ -112,18 +112,17 @@ th {
 
 tbody tr:nth-child(even) {
     background: WhiteSmoke;
-    border: 1px solid black; /* Граница вокруг ячеек */
+    border: 1px solid black;
 }
 
 tbody tr td:nth-child(2) {
     text-align: center;
-    border: 1px solid black; /* Граница вокруг ячеек */
+    border: 1px solid black;
 }
 
 tbody tr td:nth-child(3), tbody tr td:nth-child(4) {
     text-align: center;
     font-family: monospace;
-
 }
 
 tfoot {
@@ -138,8 +137,9 @@ tfoot tr th:last-child {
 
 td, th {
     border: 1px solid gray;
-    width: 25%;
+    width: 50px;
+    height: 50px;
     text-align: left;
     padding: 5px 10px;
-    border: 1px solid black; /* Граница вокруг ячеек */
+    border: 1px solid black;
 }

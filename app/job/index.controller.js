@@ -1,5 +1,3 @@
-(function () {
-    'use strict';
 
     angular
         .module('app')
@@ -20,7 +18,7 @@ function Controller ($scope, $http, $log) {
         var method = "";
         var url = "";
         if ($scope.jobForm.id == -1) {
-            //Id is absent in form data, it is create new job operation
+
             $scope.jobForm.id = null
             method = "POST";
             url = 'http://localhost:8080/jobs/add';
@@ -80,8 +78,6 @@ function Controller ($scope, $http, $log) {
         $scope.jobForm.id = -1;
         $scope.jobForm.name = "";
     }
-}
-
-})();
+};
 
 

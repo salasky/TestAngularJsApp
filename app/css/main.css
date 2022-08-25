@@ -143,3 +143,17 @@ td, th {
     padding: 5px 10px;
     border: 1px solid black;
 }
+.organization-form{
+    margin-left: 75px;
+}
+.red-button-organization{
+    background: #CD5C5C;
+    margin-left: 50px;
+    color: #fff;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 4px;
+    border: 1px solid #CD5C5C
+}

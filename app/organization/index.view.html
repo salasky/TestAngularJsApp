@@ -5,38 +5,8 @@
   <head>
 <body>
 
-<h2 class="spielbox" >Organizations <button ui-sref="test-page" class="label label-success">Add</button></h2>
-<form ng-submit="submitOrganizations()">
-  <table>
-    <tr>
-      <th colspan="2">Add/Edit organizations</th>
-    </tr>
+<h2 class="spielbox" >Organizations <button ng-click="openModal()" class="label label-success">Add</button></h2>
 
-    <tr>
-      <td>Full Name</td>
-      <td><input type="text" ng-model="organizationsForm.fullName " /></td>
-    </tr>
-
-    <tr>
-      <td>Short Name</td>
-      <td><input type="text" ng-model="organizationsForm.shortName " /></td>
-    </tr>
-
-    <tr>
-      <td>Supervisor</td>
-      <td><input type="text" ng-model="organizationsForm.supervisor " /></td>
-    </tr>
-
-    <tr>
-      <td>Contact Numbers</td>
-      <td><input type="text" ng-model="organizationsForm.contactNumbers " /></td>
-    </tr>
-    <tr>
-      <td colspan="2"><input type="submit" value="Submit"
-                             class="blue-button" /></td>
-    </tr>
-  </table>
-</form>
 <table class="table-organization">
   <thead>
   <tr>
@@ -54,8 +24,7 @@
     <td>{{ organization.shortName }}</td>
     <td>{{ organization.supervisor }}</td>
     <td>{{ organization.contactNumbers }}</td>
-    <td><a ng-click="editOrganization(organization)" class="blue-button">Edit</a>
-      | <a ng-click="deleteOrganization(organization)" class="red-button">Delete</a></td>
+    <td> <a ng-click="deleteOrganization(organization)" class="red-button-organization">Delete</a></td>
   </tr>
 </table>
 </body>

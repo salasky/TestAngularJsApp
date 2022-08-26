@@ -1,7 +1,6 @@
 
 
-    angular
-        .module('app', ['ui.router','ngTouch','ngAnimate','ui.bootstrap'])
+ angular.module('app', ['ui.router','ngTouch','ngAnimate','ui.bootstrap'])
         .config(config)
         .run(run);
 
@@ -39,6 +38,12 @@
                 url: '/organization',
                 templateUrl: 'organization/index.view.html',
                 controller: 'Organization.IndexController',
+                controllerAs: 'vm'
+            })
+            .state('department', {
+                url: '/department',
+                templateUrl: 'department/index.view.html',
+                controller: 'Department.IndexController',
                 controllerAs: 'vm'
             });
     }

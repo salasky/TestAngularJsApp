@@ -1,15 +1,15 @@
 angular
     .module('app')
-    .controller('Organization.IndexController', ['$scope', '$http', '$uibModal','restapi',
+    .controller('Department.IndexController', ['$scope', '$http', '$uibModal','restapi',
 
         function ($scope, $http, $uibModal, restapi) {
 
             _refreshCustomerData();
 
-            $scope.deleteOrganization = function (organization) {
+            $scope.deleteDepartment = function (department) {
                 $http({
                     method: 'DELETE',
-                    url: 'http://localhost:8080/organizations/' + organization.id
+                    url: 'http://localhost:8080/departments/' + department.id
                 }).then(_success, _error);
             };
 
@@ -18,17 +18,12 @@ angular
             function _refreshCustomerData() {
                 $http({
                     method: 'GET',
-                    url: 'http://localhost:8080/organizations'
+                    url: 'http://localhost:8080/departments'
                 }).then(function successCallback(response) {
-                    $scope.organizations = response.data;
+                    $scope.departments = response.data;
                 }, function errorCallback(response) {
                     console.log(response.statusText);
                 });
-
-   /*             restapi.all().then(function(resp) {
-                    $scope.organizations = resp;
-                });*/
-
             }
 
             function _success(response) {
@@ -40,15 +35,24 @@ angular
                 alert($scope.error_message = "Error! " + response.data.errorMessage + response.data.timestamp);
 
             }
-            $scope.openModal = function (organization) {
+
+            $scope.openInfo=function (department) {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8080/organizations/' + department.organizationId
+                }).then(_success, _error);
+            };
+
+
+            $scope.openModal = function (department) {
                 var modalInstance = $uibModal.open({
-                    templateUrl : 'organization/modalWindow.html',
-                    controller  : 'modalController',
+                    templateUrl : 'department/modalWindow.html',
+                    controller  : 'DepartmentModalController',
                     backdrop:false,
                     size:'m',
                     animation:true,
                     resolve: {
-                        syncData: () => organization,
+                        syncData: () => department,
                     }
                 });
                 return modalInstance;

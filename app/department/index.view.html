@@ -1,0 +1,31 @@
+<html>
+<head ng-app="app" ng-controller="Department.IndexController">
+  <title>Departments</title>
+
+  <head>
+<body>
+
+<h2 class="spielbox" >Departments <button ng-click="openModal()" class="label label-success">Add</button></h2>
+
+<table class="table-organization">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Short Name</th>
+    <th>Supervisor</th>
+    <th>Contact Number</th>
+    <th class="small">Organization</th>
+  </tr>
+  </thead>
+  <tr ng-repeat="department in departments" ng-class="{active : isSelected(department)}">
+    <td>{{ $index + 1 }}</td>
+    <td><a ng-click="openModal(department)">{{ department.fullName }}</a></td>
+    <td>{{ department.shortName }}</td>
+    <td>{{ department.supervisor }}</td>
+    <td>{{ department.contactNumber }}</td>
+    <td ><button ng-click="openInfo(department)" class="info-button">info</button></td>
+  </tr>
+</table>
+</body>
+</html>

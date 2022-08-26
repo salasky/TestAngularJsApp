@@ -14,7 +14,6 @@
         initController();
 
         function initController() {
-            vm.bodyText = 'Everyone come and see how good I look!';
         }
 
         function openModal(id){

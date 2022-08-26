@@ -1,83 +1,46 @@
+angular
+    .module('app')
+    .controller('Job.IndexController', ['$scope', '$http', '$uibModal',
 
-    angular
-        .module('app')
-        .controller('Job.IndexController', Controller);
+        function ($scope, $http, $uibModal) {
+
+            _refreshCustomerData();
 
 
-function Controller ($scope, $http, $log) {
-    $scope.jobs = [];
-    $scope.jobForm = {
-        id : -1,
-        name : ""};
-    _refreshCustomerData();
+            /* Private Methods */
+            //HTTP GET- get all jobs collection
+            function _refreshCustomerData() {
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:8080/jobs'
+                }).then(function successCallback(response) {
+                    $scope.jobs = response.data;
+                }, function errorCallback(response) {
+                    console.log(response.statusText);
+                });
 
-    //HTTP POST/PUT methods for add/edit job
-    // with the help of id, we are going to find out whether it is put or post operation
-    $scope.submitJob = function() {
-
-        var method = "";
-        var url = "";
-        if ($scope.jobForm.id == -1) {
-
-            $scope.jobForm.id = null
-            method = "POST";
-            url = 'http://localhost:8080/jobs/add';
-        } else {
-            //Id is present in form data, it is edit job operation
-            method = "PUT";
-            url = 'http://localhost:8080/jobs/update';
-        }
-        $http({
-            method : method,
-            url : url,
-            data : angular.toJson($scope.jobForm),
-            headers : {
-                'Content-Type' : 'application/json'
             }
-        }).then( _success, _error );
-    };
-    //HTTP DELETE- delete job by Id
-    $scope.deleteJob = function(job) {
-        $http({
-            method : 'DELETE',
-            url : 'http://localhost:8080/jobs/' + job.id
-        }).then(_success, _error);
-    };
 
-    // In case of edit, populate form fields and assign form.id with job id
-    $scope.editJob = function(job) {
-        $scope.jobForm.name = job.name;
-        $scope.jobForm.id = job.id;
-    };
+            function _success(response) {
+                _refreshCustomerData();
+            }
 
-    /* Private Methods */
-    //HTTP GET- get all jobs collection
-    function _refreshCustomerData() {
-        $http({
-            method : 'GET',
-            url : 'http://localhost:8080/jobs'
-        }).then(function successCallback(response) {
-            $scope.jobs = response.data;
-        }, function errorCallback(response) {
-            console.log(response.statusText);
-        });
-    }
+            function _error(response) {
+                console.log(response);
+                alert($scope.error_message = "Error! " + response.data.errorMessage + response.data.timestamp);
 
-    function _success(response) {
-        _refreshCustomerData();
-        _clearFormData()
-    }
-
-    function _error(response) {
-        console.log(response);
-        alert($scope.error_message="Error! "+response.data.errorMessage+response.data.timestamp);
-
-    }
-    //Clear the form
-    function _clearFormData() {
-        $scope.jobForm.id = -1;
-        $scope.jobForm.name = "";
-    }
-};
-
-
+            }
+            $scope.openModal = function (jobs) {
+                var modalInstance = $uibModal.open({
+                    templateUrl : 'job/modalWindow.html',
+                    controller  : 'jobsModalController',
+                    backdrop:false,
+                    size:'m',
+                    animation:true,
+                    resolve: {
+                        syncData: () => jobs,
+                    }
+                });
+                return modalInstance;
+            };
+        }])

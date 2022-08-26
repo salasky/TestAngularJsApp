@@ -16,18 +16,18 @@ angular
             /* Private Methods */
             //HTTP GET- get all organizations collection
             function _refreshCustomerData() {
-                $http({
+/*                $http({
                     method: 'GET',
                     url: 'http://localhost:8080/organizations'
                 }).then(function successCallback(response) {
                     $scope.organizations = response.data;
                 }, function errorCallback(response) {
                     console.log(response.statusText);
-                });
-
-   /*             restapi.all().then(function(resp) {
-                    $scope.organizations = resp;
                 });*/
+
+                restapi.all().then(function(resp) {
+                    $scope.organizations = resp;
+                });
 
             }
 

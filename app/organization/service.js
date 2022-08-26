@@ -12,7 +12,6 @@
             }, function errorCallback(response) {
                 console.log(response.statusText);
             });
-
             myJson.all = function(){
                 return myJson.get;
             };

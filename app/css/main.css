@@ -42,21 +42,38 @@ a:hover{
     transform: scale(1);
 }
 /*HEADER*/
-.spielboxhomeh1{
-    margin-top: 100px;
-    font-size: 5em;
-}
 
-.spielbox {
+.spielboxJobs {
     display: block;
     font-size: 1.5em;
     font-weight: bold;
-    width: 40%;
+    width: 30%;
     background:SteelBlue;
     margin: 30px 40px;
-    padding: 5px;
+    padding: 15px;
     color: white;
 }
+.spielboxDepartments {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 30%;
+    background:SteelBlue;
+    margin: 30px 40px;
+    padding: 15px;
+    color: white;
+}
+.spielboxOrganizations{
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 30%;
+    background:SteelBlue;
+    margin: 30px 40px;
+    padding: 15px;
+    color: white;
+}
+
 
 .greetingtext{
     color: darkslategray;
@@ -88,11 +105,30 @@ a:hover{
     -webkit-border-radius: 4px;
     border: 1px solid #CD5C5C
 }
-table {
+
+.table-organization{
     font-family: "Helvetica Neue", Helvetica, sans-serif;
-    width: 40%;
-    margin: 20px 40px;
+    width: 100%;
     border: 2px double black;
+    height: 600px;
+    overflow-y: scroll;
+    display: block;
+}
+.table-department{
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    width: 100%;
+    border: 2px double black;
+    height: 600px;
+    overflow-y: scroll;
+    display: block;
+}
+.table-job{
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    width: 100%;
+    border: 2px double black;
+    height: 600px;
+    overflow-y: scroll;
+    display: block;
 }
 
 caption {
@@ -134,6 +170,7 @@ tfoot {
 
 tfoot tr th:last-child {
     font-family: monospace;
+    display: block;
 }
 
 td, th {
@@ -143,6 +180,7 @@ td, th {
     text-align: left;
     padding: 5px 10px;
     border: 1px solid black;
+
 }
 .organization-form{
     margin-left: 75px;
@@ -166,6 +204,36 @@ td, th {
     text-decoration: none;
     display: inline-block;
     font-size: 13px;
+}
+
+
+.split {
+    height: 60%;
+    width: 50%;
+    position: absolute;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 34%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.centered2 {
+    position: absolute;
+    top: -15%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 

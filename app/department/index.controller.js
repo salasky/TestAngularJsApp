@@ -1,8 +1,9 @@
 angular
     .module('app')
-    .controller('Department.IndexController', ['$scope', '$http', '$uibModal','restapi',
+    .controller('Department.IndexController', ['$scope', '$http', '$uibModal',
 
-        function ($scope, $http, $uibModal, restapi) {
+        function ($scope, $http, $uibModal, uiGridConstants) {
+
 
             _refreshCustomerData();
 
@@ -16,6 +17,7 @@ angular
             /* Private Methods */
             //HTTP GET- get all organizations collection
             function _refreshCustomerData() {
+                $scope.departments=[];
                 $http({
                     method: 'GET',
                     url: 'http://localhost:8080/departments'
@@ -57,4 +59,34 @@ angular
                 });
                 return modalInstance;
             };
-        }])
+
+            $scope.tabs = [{
+                title: 'Tab 01',
+                content: 'Dynamic content 1'
+            }];
+
+            $scope.removeTab = function(i) {
+                console.log("Removing tab: " + i);
+                $scope.tabs.splice(i, 1);
+            };
+
+            $scope.foo = 'FOO';
+            $scope.bar = 'BAR';
+
+            $scope.addTab = function() {
+                var len = $scope.tabs.length + 1;
+                var numLbl = '' + ((len > 9) ? '' : '0') + String(len);
+
+                var mrkUp = '<div>' +
+                    '<h1>New Tab ' + numLbl + ' {{foo}}</h1>' +
+                    '<div ng-include="tab.tabUrl"></div>' +
+                    '</div>';
+
+                $scope.tabs.push({
+                    title: 'Tab ' + numLbl,
+                    content: mrkUp,
+                    tabUrl: 'includeFile.html'
+                });
+            };
+        }]);
+

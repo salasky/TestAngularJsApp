@@ -5,8 +5,10 @@
   <head>
 <body>
 
-<h2 class="spielbox" >Organizations <button ng-click="openModal()" class="label label-success">Add</button></h2>
+<h2 class="spielboxOrganizations" >Organizations <button ng-click="openModal()" class="label label-success">Add</button></h2>
 
+<div class="split left">
+  <div class="centered">
 <table class="table-organization">
   <thead>
   <tr>
@@ -25,5 +27,15 @@
     <td>{{ organization.contactNumbers }}</td>
   </tr>
 </table>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered2">
+    <h2>John Doe</h2>
+    <p>Some text here too.</p>
+  </div>
+</div>
+
 </body>
 </html>

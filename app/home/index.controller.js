@@ -5,24 +5,8 @@
         .module('app')
         .controller('Home.IndexController', Controller);
 
-    function Controller(ModalService) {
-        var vm = this;
+    function Controller() {
 
-        vm.openModal = openModal;
-        vm.closeModal = closeModal;
-
-        initController();
-
-        function initController() {
-        }
-
-        function openModal(id){
-            ModalService.Open(id);
-        }
-
-        function closeModal(id){
-            ModalService.Close(id);
-        }
     }
 
 })();

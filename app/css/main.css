@@ -207,17 +207,17 @@ td, th {
 }
 
 
-.split {
+.splitleft{
     height: 60%;
     width: 50%;
     position: absolute;
-}
-
-.left {
     left: 0;
-}
 
-.right {
+}
+.splitright{
+    height: 60%;
+    width: 60%;
+    position: absolute;
     right: 0;
 }
 
@@ -230,10 +230,7 @@ td, th {
 }
 .centered2 {
     position: absolute;
-    top: -15%;
-    left: 20%;
-    transform: translate(-50%, -50%);
+    top: -20%;
+    left: 0%;
     text-align: center;
 }
-
-

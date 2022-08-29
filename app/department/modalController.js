@@ -38,7 +38,7 @@ angular
     }
 
     function _success(response){
-        $window.location.reload();
+        /*$window.location.reload();*/
     }
 
     function _error(response) {

@@ -84,7 +84,7 @@ angular
 
             $scope.info = function(department) {
                 organizationInfo(department);
-                var tabNo = department.shortName+department.id.charCodeAt(0);
+                var tabNo = department.shortName+department.id.charCodeAt(0)+department.id.charCodeAt(1);
                 $scope.tabs.push(tabNo);
                 $scope.activeTabNo = tabNo;
             };

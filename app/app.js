@@ -45,8 +45,21 @@
                 templateUrl: 'department/index.view.html',
                 controller: 'Department.IndexController',
                 controllerAs: 'vm'
+            })
+            .state('person', {
+                url: '/person',
+                templateUrl: 'person/index.view.html',
+                controller: 'Person.IndexController',
+                controllerAs: 'vm'
+            })
+            .state('document', {
+                url: '/document',
+                templateUrl: 'document/index.view.html',
+                controller: 'Document.IndexController',
+                controllerAs: 'vm'
             });
     }
 
     function run() {
+
     };

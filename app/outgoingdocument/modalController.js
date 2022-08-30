@@ -37,7 +37,6 @@ angular
         loadPersonData()
         selectMyDeliveryType(incomingDocument);
 
-
         $scope.outgoingDocumentForm.id = incomingDocument.id;
         $scope.outgoingDocumentForm.name = incomingDocument.name;
         $scope.outgoingDocumentForm.text = incomingDocument.text;
@@ -65,6 +64,7 @@ angular
 
     function _success(response){
         $window.location.reload();
+
     }
 
     function _error(response) {
@@ -108,7 +108,6 @@ angular
             url: 'http://localhost:8080/outgoingdocuments/' +  $scope.data.id
         }).then(_success, _error);
     };
-
 
     function loadPersonData() {
         $http({

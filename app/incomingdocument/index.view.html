@@ -1,132 +1,147 @@
 <html>
 <head ng-app="app" ng-controller="IncomingDocument.IndexController as temp2">
-  <title>IncomingDocuments</title>
+    <title>IncomingDocuments</title>
 
-  <head>
+    <head>
 <body>
 
-<h2 class="spielboxDepartments" >IncomingDocuments <button ng-click="openModal()" class="label label-success">Add</button></h2>
+<h2 class="spielboxDepartments">IncomingDocuments
+    <button ng-click="openModal()" class="label label-success">Add</button>
+</h2>
 
 <div class="splitleft">
-  <div class="centered">
-<table class="table-department">
-  <thead>
-  <tr >
-    <th>Id</th>
-    <th>Name</th>
-    <th>Text</th>
-    <th>RegNumber</th>
-    <th>Info</th>
-  </tr>
-  </thead>
-  <tbody >
-  <tr  ng-repeat="incomingDocument in incomingDocuments" ng-class="{active : isSelected(incomingDocument)}">
-    <td>{{ $index + 1 }}</td>
-    <td><a ng-click="openModal(incomingDocument)">{{ incomingDocument.name }}</a></td>
-    <td>{{ incomingDocument.text }}</td>
-    <td>{{ incomingDocument.regNumber }}</td>
-    <td ><button ng-click="info(incomingDocument)" class="info-button">info</button></td>
-  </tr>
-  </tbody>
-</table>
-  </div>
+    <div class="centered">
+        <table class="table-department">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Text</th>
+                <th>RegNumber</th>
+                <th>Info</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="incomingDocument in incomingDocuments" ng-class="{active : isSelected(incomingDocument)}">
+                <td>{{ $index + 1 }}</td>
+                <td><a ng-click="openModal(incomingDocument)">{{ incomingDocument.name }}</a></td>
+                <td>{{ incomingDocument.text }}</td>
+                <td>{{ incomingDocument.regNumber }}</td>
+                <td>
+                    <button ng-click="info(incomingDocument)" class="info-button">info</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="splitright">
-  <div class="centered2">
-      <div class="tablebox">
-        <div class="tablecontent">
+    <div class="centered2">
+        <div class="tablebox">
+            <div class="tablecontent">
 
-          <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs">
 
-            <li ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab==activeTabNo]">
-              <a href="javascript:void(0)" ng-click="activeTab(tab)">{{tab}} <i class="glyphicon glyphicon-remove" ng-click="remove($index)"></i></a>
-            </li>
+                    <li ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab==activeTabNo]">
+                        <a href="javascript:void(0)" ng-click="activeTab(tab)">{{tab}} <i
+                                class="glyphicon glyphicon-remove" ng-click="remove($index)"></i></a>
+                    </li>
 
-          </ul>
-          <div class="tab-content">
+                </ul>
+                <div class="tab-content">
 
-            <div class="tab-pane" ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab==activeTabNo]">
-
-
-              <div ng-app="app" class="modal-body" id="modal-body">
-                <label>Document Info</label>
-                <form class="form-horizontal" name="contact">
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Name:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="fullName" name="fullName" ng-model="incomingDocument.name " > </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Text:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="text" name="text" ng-model="incomingDocument.text"> </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">RegNumber:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="regNumber" name="regNumber" ng-model="incomingDocument.regNumber "> </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Creating Date:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="creatingDate" name="creatingDate" ng-model="incomingDocument.creatingDate "> </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Number:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="number" name="number" ng-model="incomingDocument.number "> </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Date Of Registration:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="dateOfRegistration" name="dateOfRegistration" ng-model="incomingDocument.dateOfRegistration "> </div>
-                  </div>
-                </form>
+                    <div class="tab-pane" ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab==activeTabNo]">
 
 
-                <label>Author Info</label>
-                <form class="form-horizontal" name="contact">
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Second Name:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="author" name="author" ng-model="author.secondName " > </div>
-                  </div>
+                        <div ng-app="app" class="modal-body" id="modal-body">
+                            <label>Document Info</label>
+                            <form class="form-horizontal" name="contact">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Name:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="fullName" name="fullName"
+                                               ng-model="incomingDocument.name "></div>
+                                </div>
 
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">First Name:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="authorfirst" name="authorfirst" ng-model="author.firstName " > </div>
-                  </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Text:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="text" name="text"
+                                               ng-model="incomingDocument.text"></div>
+                                </div>
 
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Last Name:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="lastName" name="lastName" ng-model="author.lastName " > </div>
-                  </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">RegNumber:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="regNumber" name="regNumber"
+                                               ng-model="incomingDocument.regNumber "></div>
+                                </div>
 
-                  <div class="form-group">
-                    <label class="col-lg-3 control-label">Birth Day:</label>
-                    <div class="col-lg-8">
-                      <input class="form-control" type="text" id="birthDay" name="birthDay" ng-model="author.birthDay " > </div>
-                  </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Creating Date:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="creatingDate" name="creatingDate"
+                                               ng-model="incomingDocument.creatingDate "></div>
+                                </div>
 
-                </form>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Number:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="number" name="number"
+                                               ng-model="incomingDocument.number "></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Date Of Registration:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="dateOfRegistration"
+                                               name="dateOfRegistration"
+                                               ng-model="incomingDocument.dateOfRegistration "></div>
+                                </div>
+                            </form>
 
 
+                            <label>Author Info</label>
+                            <form class="form-horizontal" name="contact">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Second Name:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="author" name="author"
+                                               ng-model="author.secondName "></div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">First Name:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="authorfirst" name="authorfirst"
+                                               ng-model="author.firstName "></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Last Name:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="lastName" name="lastName"
+                                               ng-model="author.lastName "></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Birth Day:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" id="birthDay" name="birthDay"
+                                               ng-model="author.birthDay "></div>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-      </div>
-      </div>
-  </div>
+        </div>
+    </div>
 </div>
-
 
 </body>
 </html>

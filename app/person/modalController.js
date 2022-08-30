@@ -18,13 +18,6 @@ angular
     $scope.jobs=[];
 
 
-        $scope.init = function(){
-            $scope.date = new Date('2011-05-01')
-            $scope.datepickerOptions = {
-                minDate: new Date('2010-05-01'),
-                initDate: new Date('2011-05-01')
-            };
-        };
 
     if($scope.data!=undefined){
         editPerson($scope.data);

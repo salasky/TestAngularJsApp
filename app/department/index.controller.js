@@ -104,9 +104,4 @@ angular
                 $scope.activeTabNo = tabNo;
             };
 
-
-
         }]);
-
-
-

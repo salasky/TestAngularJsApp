@@ -52,12 +52,26 @@
                 controller: 'Person.IndexController',
                 controllerAs: 'vm'
             })
-            .state('document', {
-                url: '/document',
-                templateUrl: 'document/index.view.html',
-                controller: 'Document.IndexController',
+            .state('incomingDocument', {
+                url: '/incomingDocument',
+                templateUrl: 'incomingdocument/index.view.html',
+                controller: 'IncomingDocument.IndexController',
                 controllerAs: 'vm'
-            });
+            })
+            .state('taskDocument', {
+                url: '/taskDocument',
+                templateUrl: 'taskdocument/index.view.html',
+                controller: 'TaskDocument.IndexController',
+                controllerAs: 'vm'
+            })
+
+            .state('outgoingDocument', {
+                url: '/outgoingDocument',
+                templateUrl: 'outgoingdocument/index.view.html',
+                controller: 'OutgoingDocument.IndexController',
+                controllerAs: 'vm'
+            })
+        ;
     }
 
     function run() {

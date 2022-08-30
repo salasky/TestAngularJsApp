@@ -2154,7 +2154,7 @@ angular.module('ui.bootstrap.position', [])
              * reported.
              *
              * @param {element} elem - The element to get the viewport offset for.
-             * @param {boolean=} [useDocument=false] - Should the viewport be the document element instead
+             * @param {boolean=} [useDocument=false] - Should the viewport be the incomingdocument element instead
              * of the first scrollable element, default is false.
              * @param {boolean=} [includePadding=true] - Should the padding on the offset parent element
              * be accounted for, default is true.
@@ -6583,7 +6583,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.debounce', 'ui.bootstrap
             // Keep reference to click handler to unbind it.
             var dismissClickHandler = function(evt) {
                 // Issue #3973
-                // Firefox treats right click as a click on document
+                // Firefox treats right click as a click on incomingdocument
                 if (element[0] !== evt.target && evt.which !== 3 && scope.matches.length !== 0) {
                     resetMatches();
                     if (!$rootScope.$$phase) {

@@ -1,5 +1,5 @@
 angular
-    .module('app').controller('OutgoingDocumentModalController', function ( $scope, $uibModalInstance, $http , syncData , $window) {
+    .module('app').controller('OutgoingDocumentModalController', function ($scope, $uibModalInstance, $http, syncData, $window) {
 
     $scope.data = syncData;
     $scope.outgoingDocumentForm = {
@@ -9,29 +9,31 @@ angular
         regNumber: "",
         creatingDate: "",
         authorId: "",
-        senderId:"",
-        deliveryType:""
+        senderId: "",
+        deliveryType: ""
     }
 
-    $scope.persons=[];
-    $scope.deliveryTypes=[{label: 'TELEGRAM',}, {label: 'EMAIL',}, {label: 'ROCKET_CHAT',}, {label: 'MESSENGER',}, {label: 'RUSSIAN_POST'}];
-    $scope.myDeliveryType={
-        label:""
+    $scope.persons = [];
+    $scope.deliveryTypes = [{label: 'TELEGRAM',}, {label: 'EMAIL',}, {label: 'ROCKET_CHAT',}, {label: 'MESSENGER',}, {label: 'RUSSIAN_POST'}];
+    $scope.myDeliveryType = {
+        label: ""
     }
-    function selectMyDeliveryType(incomingDocument){
+
+    function selectMyDeliveryType(incomingDocument) {
         for (const el of $scope.deliveryTypes) {
-            if (el.label==incomingDocument.deliveryType){
-                $scope.myDeliveryType=el;
+            if (el.label == incomingDocument.deliveryType) {
+                $scope.myDeliveryType = el;
 
             }
         }
     }
 
-    if($scope.data!=undefined){
+    if ($scope.data != undefined) {
         editDocument($scope.data);
+    } else {
+        addDocument();
     }
-    else {addDocument();
-    };
+    ;
 
     function editDocument(incomingDocument) {
         loadPersonData()
@@ -41,13 +43,14 @@ angular
         $scope.outgoingDocumentForm.name = incomingDocument.name;
         $scope.outgoingDocumentForm.text = incomingDocument.text;
         $scope.outgoingDocumentForm.regNumber = incomingDocument.regNumber;
-        $scope.outgoingDocumentForm.creatingDate =  new Date(incomingDocument.creatingDate);
+        $scope.outgoingDocumentForm.creatingDate = new Date(incomingDocument.creatingDate);
         $scope.outgoingDocumentForm.authorId = incomingDocument.authorId;
 
         $scope.outgoingDocumentForm.senderId = incomingDocument.senderId;
         $scope.outgoingDocumentForm.deliveryType = incomingDocument.deliveryType;
 
     }
+
     function addDocument() {
         loadPersonData()
         $scope.outgoingDocumentForm.id = -1;
@@ -62,7 +65,7 @@ angular
 
     }
 
-    function _success(response){
+    function _success(response) {
         $window.location.reload();
 
     }
@@ -76,7 +79,7 @@ angular
     $scope.ok = function () {
         $scope.outgoingDocumentForm.authorId = $scope.myAuthor.id;
         $scope.outgoingDocumentForm.senderId = $scope.mySender.id;
-        $scope.outgoingDocumentForm.deliveryType=$scope.myDeliveryType.label;
+        $scope.outgoingDocumentForm.deliveryType = $scope.myDeliveryType.label;
         var method = "";
         var url = "";
         if ($scope.outgoingDocumentForm.id == -1) {
@@ -105,7 +108,7 @@ angular
     $scope.deleteOutgoingDocuments = function () {
         $http({
             method: 'DELETE',
-            url: 'http://localhost:8080/outgoingdocuments/' +  $scope.data.id
+            url: 'http://localhost:8080/outgoingdocuments/' + $scope.data.id
         }).then(_success, _error);
     };
 
@@ -116,11 +119,11 @@ angular
         }).then(function successCallback(response) {
             $scope.persons = response.data;
             for (const el of $scope.persons) {
-                if (el.id==$scope.data.authorId){
-                    $scope.myAuthor=el;
+                if (el.id == $scope.data.authorId) {
+                    $scope.myAuthor = el;
                 }
-                if (el.id==$scope.data.senderId){
-                    $scope.mySender=el;
+                if (el.id == $scope.data.senderId) {
+                    $scope.mySender = el;
                 }
             }
         }, function errorCallback(response) {

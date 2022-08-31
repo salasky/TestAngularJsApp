@@ -17,33 +17,31 @@ angular
             }
 
 
-            function personInfo (incomingDocument) {
+            function personInfo(incomingDocument) {
                 $http({
                     method: 'GET',
-                    url: 'http://localhost:8080/persons/'+incomingDocument.authorId
+                    url: 'http://localhost:8080/persons/' + incomingDocument.authorId
                 }).then(function successCallback(response) {
                     $scope.author = response.data;
 
-                    let tabNo =  incomingDocument;
-                    tabNo.author=$scope.author;
-                    tabNo.index= incomingDocument.name+' '+incomingDocument.id.substring(0,3)
+                    let tabNo = incomingDocument;
+                    tabNo.author = $scope.author;
+                    tabNo.index = incomingDocument.name + ' ' + incomingDocument.id.substring(0, 3)
                     $scope.tabs.push(tabNo);
-                    $scope.activeTabNo =  tabNo;
+                    $scope.activeTabNo = tabNo;
                 }, function errorCallback(response) {
                     console.log(response.statusText);
                 });
             };
 
 
-
-
             $scope.openModal = function (incomingDocument) {
                 var modalInstance = $uibModal.open({
-                    templateUrl : 'incomingdocument/modalWindow.html',
-                    controller  : 'IncomingDocumentModalController',
-                    backdrop:false,
-                    size:'m',
-                    animation:true,
+                    templateUrl: 'incomingdocument/modalWindow.html',
+                    controller: 'IncomingDocumentModalController',
+                    backdrop: false,
+                    size: 'm',
+                    animation: true,
                     resolve: {
                         syncData: () => incomingDocument,
                     }
@@ -54,13 +52,13 @@ angular
 
             $scope.activeTabNo = 0;
             $scope.tabs = [];
-            $scope.incomingDocument="";
+            $scope.incomingDocument = "";
 
-            $scope.info = function(incomingDocument) {
+            $scope.info = function (incomingDocument) {
                 personInfo(incomingDocument);
             };
 
-            $scope.remove = function(index) {
+            $scope.remove = function (index) {
                 if (index === 0) {
                     if ($scope.activeTabNo === $scope.tabs[0]) {
                         $scope.activeTabNo = 0;
@@ -72,7 +70,7 @@ angular
                 }
                 $scope.tabs.splice(index, 1);
             };
-            $scope.activeTab = function(tabNo) {
+            $scope.activeTab = function (tabNo) {
                 $scope.activeTabNo = tabNo;
             };
 

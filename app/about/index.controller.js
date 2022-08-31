@@ -11,7 +11,7 @@
         initController();
 
         function initController() {
-            $scope.text='Look! I am an about page.'
+            $scope.text = 'Look! I am an about page.'
         }
     }
 

@@ -1,8 +1,8 @@
 angular
     .module('app')
-    .controller('Organization.IndexController', ['$scope', '$http', '$uibModal','restapi',
+    .controller('Organization.IndexController', ['$scope', '$http', '$uibModal', 'restapi', '$rootScope',
 
-        function ($scope, $http, $uibModal, restapi) {
+        function ($scope, $http, $uibModal, restapi, $rootScope) {
 
             _refreshCustomerData();
 
@@ -14,19 +14,11 @@ angular
             };
 
             /* Private Methods */
+
             //HTTP GET- get all organizations collection
             function _refreshCustomerData() {
-/*                $http({
-                    method: 'GET',
-                    url: 'http://localhost:8080/organizations'
-                }).then(function successCallback(response) {
-                    $scope.organizations = response.data;
-                }, function errorCallback(response) {
-                    console.log(response.statusText);
-                });*/
-
-                restapi.all().then(function(resp) {
-                    $scope.organizations = resp;
+                restapi.all().then(function (resp) {
+                    $rootScope.rootOrganizations = resp;
                 });
 
             }
@@ -40,13 +32,14 @@ angular
                 alert($scope.error_message = "Error! " + response.data.errorMessage + response.data.timestamp);
 
             }
+
             $scope.openModal = function (organization) {
                 var modalInstance = $uibModal.open({
-                    templateUrl : 'organization/modalWindow.html',
-                    controller  : 'modalController',
-                    backdrop:false,
-                    size:'m',
-                    animation:true,
+                    templateUrl: 'organization/modalWindow.html',
+                    controller: 'modalController',
+                    backdrop: false,
+                    size: 'm',
+                    animation: true,
                     resolve: {
                         syncData: () => organization,
                     }

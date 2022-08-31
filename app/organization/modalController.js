@@ -1,5 +1,5 @@
 angular
-    .module('app').controller('modalController', function ( $scope, $uibModalInstance, $http , syncData , $window) {
+    .module('app').controller('modalController', function ($scope, $uibModalInstance, $http, syncData, $rootScope) {
 
     $scope.data = syncData;
 
@@ -10,11 +10,12 @@ angular
         supervisor: "",
         contactNumbers: ""
     };
-    if($scope.data!=undefined){
+    if ($scope.data != undefined) {
         editOrganization($scope.data);
+    } else {
+        addOrganization();
     }
-    else {addOrganization();
-    };
+    ;
 
 
     function editOrganization(organization) {
@@ -24,6 +25,7 @@ angular
         $scope.organizationsForm.supervisor = organization.supervisor;
         $scope.organizationsForm.contactNumbers = organization.contactNumbers;
     }
+
     function addOrganization() {
         $scope.organizationsForm.id = -1;
         $scope.organizationsForm.fullName = "";
@@ -32,8 +34,8 @@ angular
         $scope.organizationsForm.contactNumbers = "";
     }
 
-    function _success(response){
-     /*   $window.location.reload();*/
+    function _success(response) {
+        _refreshCustomerData();
     }
 
     function _error(response) {
@@ -41,7 +43,17 @@ angular
         alert($scope.error_message = "Error! " + response.data.errorMessage + response.data.timestamp);
 
     }
+    function _refreshCustomerData() {
+            $http({
+                method: 'GET',
+                url: 'http://localhost:8080/organizations'
+            }).then(function successCallback(response) {
+                $rootScope.rootOrganizations = response.data;
+            }, function errorCallback(response) {
+                console.log(response.statusText);
+            });
 
+        }
 
     $scope.ok = function () {
         var method = "";
@@ -74,11 +86,10 @@ angular
     }
 
 
-
     $scope.deleteOrganization = function () {
         $http({
             method: 'DELETE',
-            url: 'http://localhost:8080/organizations/' +  $scope.data.id
+            url: 'http://localhost:8080/organizations/' + $scope.data.id
         }).then(_success, _error);
     };
 

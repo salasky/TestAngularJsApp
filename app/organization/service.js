@@ -2,17 +2,17 @@
     /* Services */
 
     angular.module('app')
-        .factory('restapi', ['$http', function ($http){
+        .factory('restapi', ['$http', function ($http) {
             var myJson = {};
-            myJson.get =  $http({
+            myJson.get = $http({
                 method: 'GET',
                 url: 'http://localhost:8080/organizations'
             }).then(function successCallback(response) {
-                return  response.data;
+                return response.data;
             }, function errorCallback(response) {
                 console.log(response.statusText);
             });
-            myJson.all = function(){
+            myJson.all = function () {
                 return myJson.get;
             };
 

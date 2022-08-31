@@ -1,5 +1,5 @@
 angular
-    .module('app').controller('jobsModalController', function ( $scope, $uibModalInstance, $http , syncData , $window) {
+    .module('app').controller('jobsModalController', function ($scope, $uibModalInstance, $http, syncData, $window,$rootScope) {
 
     $scope.data = syncData;
 
@@ -7,11 +7,12 @@ angular
         id: -1,
         name: ""
     };
-    if($scope.data!=undefined){
+    if ($scope.data != undefined) {
         editJob($scope.data);
+    } else {
+        addJob();
     }
-    else {addJob();
-    };
+    ;
 
 
     function editJob(job) {
@@ -19,13 +20,14 @@ angular
         $scope.jobsForm.name = job.name;
 
     }
+
     function addJob() {
         $scope.jobsForm.id = -1;
         $scope.jobsForm.name = "";
     }
 
-    function _success(response){
-        $window.location.reload();
+    function _success(response) {
+        _refreshCustomerData();
     }
 
     function _error(response) {
@@ -64,9 +66,19 @@ angular
     $scope.deleteJob = function () {
         $http({
             method: 'DELETE',
-            url: 'http://localhost:8080/jobs/' +  $scope.data.id
+            url: 'http://localhost:8080/jobs/' + $scope.data.id
         }).then(_success, _error);
     };
+    function _refreshCustomerData() {
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/jobs'
+        }).then(function successCallback(response) {
+            $rootScope.rootJobs = response.data;
+        }, function errorCallback(response) {
+            console.log(response.statusText);
+        });
 
+    }
 });
 

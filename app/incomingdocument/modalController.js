@@ -1,5 +1,5 @@
 angular
-    .module('app').controller('IncomingDocumentModalController', function ( $scope, $uibModalInstance, $http , syncData , $window) {
+    .module('app').controller('IncomingDocumentModalController', function ($scope, $uibModalInstance, $http, syncData, $window) {
 
     $scope.data = syncData;
     $scope.incomingDocumentForm = {
@@ -9,20 +9,21 @@ angular
         regNumber: "",
         creatingDate: "",
         authorId: "",
-        senderId:"",
-        destinationId:"",
-        number:"",
-        dateOfRegistration:""
+        senderId: "",
+        destinationId: "",
+        number: "",
+        dateOfRegistration: ""
     }
 
-    $scope.persons=[];
+    $scope.persons = [];
 
 
-    if($scope.data!=undefined){
+    if ($scope.data != undefined) {
         editDocument($scope.data);
+    } else {
+        addDocument();
     }
-    else {addDocument();
-    };
+    ;
 
     function editDocument(incomingDocument) {
         loadPersonData()
@@ -30,13 +31,14 @@ angular
         $scope.incomingDocumentForm.name = incomingDocument.name;
         $scope.incomingDocumentForm.text = incomingDocument.text;
         $scope.incomingDocumentForm.regNumber = incomingDocument.regNumber;
-        $scope.incomingDocumentForm.creatingDate =  new Date(incomingDocument.creatingDate);
+        $scope.incomingDocumentForm.creatingDate = new Date(incomingDocument.creatingDate);
         $scope.incomingDocumentForm.authorId = incomingDocument.authorId;
         $scope.incomingDocumentForm.senderId = incomingDocument.senderId;
         $scope.incomingDocumentForm.destinationId = incomingDocument.destinationId;
         $scope.incomingDocumentForm.number = incomingDocument.number;
-        $scope.incomingDocumentForm.dateOfRegistration =  new Date(incomingDocument.dateOfRegistration);
+        $scope.incomingDocumentForm.dateOfRegistration = new Date(incomingDocument.dateOfRegistration);
     }
+
     function addDocument() {
         loadPersonData()
         $scope.incomingDocumentForm.id = -1;
@@ -51,7 +53,7 @@ angular
         $scope.incomingDocumentForm.dateOfRegistration = "";
     }
 
-    function _success(response){
+    function _success(response) {
         $window.location.reload();
     }
 
@@ -93,7 +95,7 @@ angular
     $scope.deleteIncomingDocuments = function () {
         $http({
             method: 'DELETE',
-            url: 'http://localhost:8080/incomingdocuments/' +  $scope.data.id
+            url: 'http://localhost:8080/incomingdocuments/' + $scope.data.id
         }).then(_success, _error);
     };
 
@@ -105,14 +107,14 @@ angular
         }).then(function successCallback(response) {
             $scope.persons = response.data;
             for (const el of $scope.persons) {
-                if (el.id==$scope.data.authorId){
-                    $scope.myAuthor=el;
+                if (el.id == $scope.data.authorId) {
+                    $scope.myAuthor = el;
                 }
-                if (el.id==$scope.data.senderId){
-                    $scope.mySender=el;
+                if (el.id == $scope.data.senderId) {
+                    $scope.mySender = el;
                 }
-                if (el.id==$scope.data.destinationId){
-                    $scope.myDestination=el;
+                if (el.id == $scope.data.destinationId) {
+                    $scope.myDestination = el;
                 }
             }
         }, function errorCallback(response) {

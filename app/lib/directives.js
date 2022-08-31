@@ -1,6 +1,6 @@
 angular
     .module('app').directive('compileHtml', ['$sce', '$parse', '$compile',
-    function($sce, $parse, $compile) {
+    function ($sce, $parse, $compile) {
         return {
             restrict: 'A',
             compile: function ngBindHtmlCompile(tElement, tAttrs) {

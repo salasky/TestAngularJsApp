@@ -1,5 +1,5 @@
 angular
-    .module('app').controller('TaskDocumentModalController', function ( $scope, $uibModalInstance, $http , syncData , $window) {
+    .module('app').controller('TaskDocumentModalController', function ($scope, $uibModalInstance, $http, syncData, $window) {
 
     $scope.data = syncData;
     $scope.taskDocumentForm = {
@@ -9,21 +9,22 @@ angular
         regNumber: "",
         creatingDate: "",
         authorId: "",
-        outDate:"",
-        execPeriod:"",
-        responsibleId:"",
-        signOfControl:"",
-        controlPersonId:""
+        outDate: "",
+        execPeriod: "",
+        responsibleId: "",
+        signOfControl: "",
+        controlPersonId: ""
     }
 
-    $scope.persons=[];
+    $scope.persons = [];
 
 
-    if($scope.data!=undefined){
+    if ($scope.data != undefined) {
         editDocument($scope.data);
+    } else {
+        addDocument();
     }
-    else {addDocument();
-    };
+    ;
 
     function editDocument(taskDocument) {
         loadPersonData()
@@ -31,15 +32,16 @@ angular
         $scope.taskDocumentForm.name = taskDocument.name;
         $scope.taskDocumentForm.text = taskDocument.text;
         $scope.taskDocumentForm.regNumber = taskDocument.regNumber;
-        $scope.taskDocumentForm.creatingDate =  new Date(taskDocument.creatingDate);
+        $scope.taskDocumentForm.creatingDate = new Date(taskDocument.creatingDate);
         $scope.taskDocumentForm.authorId = taskDocument.authorId;
 
         $scope.taskDocumentForm.execPeriod = taskDocument.execPeriod;
         $scope.taskDocumentForm.responsibleId = taskDocument.responsibleId;
         $scope.taskDocumentForm.controlPersonId = taskDocument.controlPersonId;
         $scope.taskDocumentForm.signOfControl = taskDocument.signOfControl;
-        $scope.taskDocumentForm.outDate =  new Date(taskDocument.outDate);
+        $scope.taskDocumentForm.outDate = new Date(taskDocument.outDate);
     }
+
     function addDocument() {
         loadPersonData()
         $scope.taskDocumentForm.id = -1;
@@ -57,7 +59,7 @@ angular
 
     }
 
-    function _success(response){
+    function _success(response) {
         $window.location.reload();
     }
 
@@ -99,7 +101,7 @@ angular
     $scope.deleteTaskDocuments = function () {
         $http({
             method: 'DELETE',
-            url: 'http://localhost:8080/taskdocuments/' +  $scope.data.id
+            url: 'http://localhost:8080/taskdocuments/' + $scope.data.id
         }).then(_success, _error);
     };
 
@@ -111,14 +113,14 @@ angular
         }).then(function successCallback(response) {
             $scope.persons = response.data;
             for (const el of $scope.persons) {
-                if (el.id==$scope.data.authorId){
-                    $scope.myAuthor=el;
+                if (el.id == $scope.data.authorId) {
+                    $scope.myAuthor = el;
                 }
-                if (el.id==$scope.data.responsibleId){
-                    $scope.myResponsible=el;
+                if (el.id == $scope.data.responsibleId) {
+                    $scope.myResponsible = el;
                 }
-                if (el.id==$scope.data.controlPersonId){
-                    $scope.myControlPerson=el;
+                if (el.id == $scope.data.controlPersonId) {
+                    $scope.myControlPerson = el;
                 }
             }
         }, function errorCallback(response) {

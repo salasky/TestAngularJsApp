@@ -1,5 +1,5 @@
 angular
-    .module('app').controller('DepartmentModalController', function ( $scope, $uibModalInstance, $http , syncData , $window) {
+    .module('app').controller('DepartmentModalController', function ($scope, $uibModalInstance, $http, syncData, $rootScope) {
 
     $scope.data = syncData;
     $scope.departmentsForm = {
@@ -10,13 +10,14 @@ angular
         contactNumber: "",
         organizationId: ""
     };
-    $scope.organizations=[];
+    $scope.organizations = [];
 
-    if($scope.data!=undefined){
+    if ($scope.data != undefined) {
         editDepartment($scope.data);
+    } else {
+        addDepartment();
     }
-    else {addDepartment();
-    };
+    ;
 
     function editDepartment(department) {
         loadOrganizationData()
@@ -27,6 +28,7 @@ angular
         $scope.departmentsForm.contactNumber = department.contactNumber;
         $scope.departmentsForm.organizationId = department.organizationId;
     }
+
     function addDepartment() {
         loadOrganizationData()
         $scope.departmentsForm.id = -1;
@@ -34,11 +36,11 @@ angular
         $scope.departmentsForm.shortName = "";
         $scope.departmentsForm.supervisor = "";
         $scope.departmentsForm.contactNumber = "";
-        $scope.departmentsForm.organizationId ="";
+        $scope.departmentsForm.organizationId = "";
     }
 
-    function _success(response){
-        /*$window.location.reload();*/
+    function _success(response) {
+        _refreshCustomerData();
     }
 
     function _error(response) {
@@ -46,7 +48,17 @@ angular
         alert($scope.error_message = "Error! " + response.data.errorMessage + response.data.timestamp);
 
     }
-
+    function _refreshCustomerData() {
+        $scope.departments = [];
+        $http({
+            method: 'GET',
+            url: 'http://localhost:8080/departments'
+        }).then(function successCallback(response) {
+            $rootScope.rootDepartments = response.data;
+        }, function errorCallback(response) {
+            console.log(response.statusText);
+        });
+    }
     $scope.ok = function () {
         $scope.departmentsForm.organizationId = $scope.myOrganization.id;
 
@@ -79,7 +91,7 @@ angular
     $scope.deleteDepartment = function () {
         $http({
             method: 'DELETE',
-            url: 'http://localhost:8080/departments/' +  $scope.data.id
+            url: 'http://localhost:8080/departments/' + $scope.data.id
         }).then(_success, _error);
     };
 
@@ -91,8 +103,8 @@ angular
         }).then(function successCallback(response) {
             $scope.organizations = response.data;
             for (const el of $scope.organizations) {
-                if (el.id==$scope.data.organizationId){
-                    $scope.myOrganization=el;
+                if (el.id == $scope.data.organizationId) {
+                    $scope.myOrganization = el;
                 }
             }
         }, function errorCallback(response) {

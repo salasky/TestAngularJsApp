@@ -1,8 +1,8 @@
 angular
     .module('app')
-    .controller('Department.IndexController', ['$scope', '$http', '$uibModal',
+    .controller('Department.IndexController', ['$scope', '$http', '$uibModal','$rootScope',
 
-        function ($scope, $http, $uibModal, uiGridConstants) {
+        function ($scope, $http, $uibModal, $rootScope) {
 
 
             _refreshCustomerData();
@@ -15,14 +15,15 @@ angular
             };
 
             /* Private Methods */
+
             //HTTP GET- get all organizations collection
             function _refreshCustomerData() {
-                $scope.departments=[];
+                $scope.departments = [];
                 $http({
                     method: 'GET',
                     url: 'http://localhost:8080/departments'
                 }).then(function successCallback(response) {
-                    $scope.departments = response.data;
+                    $rootScope.rootDepartments = response.data;
                 }, function errorCallback(response) {
                     console.log(response.statusText);
                 });
@@ -37,15 +38,15 @@ angular
                 alert($scope.error_message = "Error! " + response.data.errorMessage + response.data.timestamp);
             }
 
-            function organizationInfo (department) {
+            function organizationInfo(department) {
                 $http({
                     method: 'GET',
-                    url: 'http://localhost:8080/organizations/'+department.organizationId
+                    url: 'http://localhost:8080/organizations/' + department.organizationId
                 }).then(function successCallback(response) {
                     $scope.organization = response.data;
 
-                    let tabNo =  $scope.organization
-                    tabNo.index= department.fullName+' '+department.id.substring(0,3)
+                    let tabNo = $scope.organization
+                    tabNo.index = department.fullName + ' ' + department.id.substring(0, 3)
                     $scope.tabs.push(tabNo);
                     $scope.activeTabNo = tabNo;
                 }, function errorCallback(response) {
@@ -53,13 +54,13 @@ angular
                 });
             };
 
-            $scope.openOrganizationModal=function (){
+            $scope.openOrganizationModal = function () {
                 var modalInstance = $uibModal.open({
-                    templateUrl : 'organization/modalWindow.html',
-                    controller  : 'modalController',
-                    backdrop:false,
-                    size:'m',
-                    animation:true,
+                    templateUrl: 'organization/modalWindow.html',
+                    controller: 'modalController',
+                    backdrop: false,
+                    size: 'm',
+                    animation: true,
                     resolve: {
                         syncData: () => $scope.organization,
                     }
@@ -70,11 +71,11 @@ angular
 
             $scope.openModal = function (department) {
                 var modalInstance = $uibModal.open({
-                    templateUrl : 'department/modalWindow.html',
-                    controller  : 'DepartmentModalController',
-                    backdrop:false,
-                    size:'m',
-                    animation:true,
+                    templateUrl: 'department/modalWindow.html',
+                    controller: 'DepartmentModalController',
+                    backdrop: false,
+                    size: 'm',
+                    animation: true,
                     resolve: {
                         syncData: () => department,
                     }
@@ -85,12 +86,12 @@ angular
 
             $scope.activeTabNo = 0;
             $scope.tabs = [];
-            $scope.department="";
+            $scope.department = "";
 
-            $scope.info = function(department) {
+            $scope.info = function (department) {
                 organizationInfo(department);
             };
-            $scope.remove = function(index) {
+            $scope.remove = function (index) {
                 if (index === 0) {
                     if ($scope.activeTabNo === $scope.tabs[0]) {
                         $scope.activeTabNo = 0;
@@ -102,7 +103,7 @@ angular
                 }
                 $scope.tabs.splice(index, 1);
             };
-            $scope.activeTab = function(tabNo) {
+            $scope.activeTab = function (tabNo) {
                 $scope.activeTabNo = tabNo;
             };
 

@@ -43,8 +43,8 @@
 
                 <ul class="nav nav-tabs">
 
-                    <li ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab==activeTabNo]">
-                        <a href="javascript:void(0)" ng-click="activeTab(tab)">{{tab}} <i
+                    <li ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab.index==activeTabNo]">
+                        <a href="javascript:void(0)" ng-click="activeTab(tab)">{{tab.index}} <i
                                 class="glyphicon glyphicon-remove" ng-click="remove($index)"></i></a>
                     </li>
 
@@ -61,35 +61,35 @@
                                     <label class="col-lg-3 control-label">Name:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="fullName" name="fullName"
-                                               ng-model="incomingDocument.name "></div>
+                                               ng-model="tab.name "></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Text:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="text" name="text"
-                                               ng-model="incomingDocument.text"></div>
+                                               ng-model="tab.text"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">RegNumber:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="regNumber" name="regNumber"
-                                               ng-model="incomingDocument.regNumber "></div>
+                                               ng-model="tab.regNumber "></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Creating Date:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="creatingDate" name="creatingDate"
-                                               ng-model="incomingDocument.creatingDate "></div>
+                                               ng-model="tab.creatingDate "></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Number:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="number" name="number"
-                                               ng-model="incomingDocument.number "></div>
+                                               ng-model="tab.number "></div>
                                 </div>
 
                                 <div class="form-group">
@@ -97,7 +97,7 @@
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="dateOfRegistration"
                                                name="dateOfRegistration"
-                                               ng-model="incomingDocument.dateOfRegistration "></div>
+                                               ng-model="tab.dateOfRegistration "></div>
                                 </div>
                             </form>
 
@@ -108,28 +108,28 @@
                                     <label class="col-lg-3 control-label">Second Name:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="author" name="author"
-                                               ng-model="author.secondName "></div>
+                                               ng-model="tab.author.secondName "></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">First Name:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="authorfirst" name="authorfirst"
-                                               ng-model="author.firstName "></div>
+                                               ng-model="tab.author.firstName "></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Last Name:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="lastName" name="lastName"
-                                               ng-model="author.lastName "></div>
+                                               ng-model="tab.author.lastName "></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Birth Day:</label>
                                     <div class="col-lg-8">
                                         <input class="form-control" type="text" id="birthDay" name="birthDay"
-                                               ng-model="author.birthDay "></div>
+                                               ng-model="tab.author.birthDay "></div>
                                 </div>
 
                             </form>

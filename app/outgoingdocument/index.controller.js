@@ -24,10 +24,9 @@ app.controller('OutgoingDocument.IndexController', function($compile, $sce, $sco
                 url: 'http://localhost:8080/persons/'+outgoingDocument.authorId
             }).then(function successCallback(response) {
                 $scope.author = response.data;
-
                 let tabNo =  outgoingDocument;
-                tabNo.authorId=$scope.author;
-
+                tabNo.author=$scope.author;
+                tabNo.index= outgoingDocument.name+' '+outgoingDocument.id.substring(0,3)
                 $scope.tabs.push(tabNo);
                 $scope.activeTabNo =  tabNo;
 
@@ -58,6 +57,7 @@ app.controller('OutgoingDocument.IndexController', function($compile, $sce, $sco
 
     $scope.info = function(outgoingDocument) {
         personInfo(outgoingDocument);
+
     };
 
     $scope.remove = function(index) {

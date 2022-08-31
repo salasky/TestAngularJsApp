@@ -17,12 +17,19 @@ angular
             }
 
 
-            function personInfo (taskdocument) {
+            function personInfo (taskDocument) {
                 $http({
                     method: 'GET',
-                    url: 'http://localhost:8080/persons/'+taskdocument.authorId
+                    url: 'http://localhost:8080/persons/'+taskDocument.authorId
                 }).then(function successCallback(response) {
                     $scope.author = response.data;
+
+                    let tabNo =  taskDocument;
+                    tabNo.author=$scope.author;
+                    tabNo.index= taskDocument.name+' '+taskDocument.id.substring(0,3)
+                    $scope.tabs.push(tabNo);
+                    $scope.activeTabNo =  tabNo;
+
                 }, function errorCallback(response) {
                     console.log(response.statusText);
                 });
@@ -52,10 +59,6 @@ angular
 
             $scope.info = function(taskDocument) {
                 personInfo(taskDocument);
-                $scope.taskDocument=taskDocument;
-                var tabNo = taskDocument.name+taskDocument.id.charCodeAt(0)+taskDocument.id.charCodeAt(1);
-                $scope.tabs.push(tabNo);
-                $scope.activeTabNo = tabNo;
             };
 
             $scope.remove = function(index) {

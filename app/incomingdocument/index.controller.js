@@ -23,6 +23,12 @@ angular
                     url: 'http://localhost:8080/persons/'+incomingDocument.authorId
                 }).then(function successCallback(response) {
                     $scope.author = response.data;
+
+                    let tabNo =  incomingDocument;
+                    tabNo.author=$scope.author;
+                    tabNo.index= incomingDocument.name+' '+incomingDocument.id.substring(0,3)
+                    $scope.tabs.push(tabNo);
+                    $scope.activeTabNo =  tabNo;
                 }, function errorCallback(response) {
                     console.log(response.statusText);
                 });
@@ -52,10 +58,6 @@ angular
 
             $scope.info = function(incomingDocument) {
                 personInfo(incomingDocument);
-                $scope.incomingDocument=incomingDocument;
-                var tabNo = incomingDocument.name+incomingDocument.id.charCodeAt(0)+incomingDocument.id.charCodeAt(1);
-                $scope.tabs.push(tabNo);
-                $scope.activeTabNo = tabNo;
             };
 
             $scope.remove = function(index) {

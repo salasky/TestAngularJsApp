@@ -43,8 +43,8 @@
 
         <ul class="nav nav-tabs">
 
-          <li ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab.id==activeTabNo]">
-            <a href="javascript:void(0)" ng-click="activeTab(tab)">{{tab.id}}<i
+          <li ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab.index==activeTabNo]">
+            <a href="javascript:void(0)" ng-click="activeTab(tab)">{{tab.index}}<i
                     class="glyphicon glyphicon-remove" ng-click="remove($index)"></i></a>
           </li>
 
@@ -102,28 +102,28 @@
                   <label class="col-lg-3 control-label">Second Name:</label>
                   <div class="col-lg-8">
                     <input class="form-control" type="text" id="author" name="author"
-                           ng-model="tab.authorId.secondName "></div>
+                           ng-model="tab.author.secondName "></div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-3 control-label">First Name:</label>
                   <div class="col-lg-8">
                     <input class="form-control" type="text" id="authorfirst" name="authorfirst"
-                           ng-model="tab.authorId.firstName "></div>
+                           ng-model="tab.author.firstName "></div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Last Name:</label>
                   <div class="col-lg-8">
                     <input class="form-control" type="text" id="lastName" name="lastName"
-                           ng-model="tab.authorId.lastName "></div>
+                           ng-model="tab.author.lastName "></div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-3 control-label">Birth Day:</label>
                   <div class="col-lg-8">
                     <input class="form-control" type="text" id="birthDay" name="birthDay"
-                           ng-model="tab.authorId.birthDay "></div>
+                           ng-model="tab.author.birthDay "></div>
                 </div>
               </form>
 

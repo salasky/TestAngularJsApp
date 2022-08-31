@@ -43,6 +43,11 @@ angular
                     url: 'http://localhost:8080/organizations/'+department.organizationId
                 }).then(function successCallback(response) {
                     $scope.organization = response.data;
+
+                    let tabNo =  $scope.organization
+                    tabNo.index= department.fullName+' '+department.id.substring(0,3)
+                    $scope.tabs.push(tabNo);
+                    $scope.activeTabNo = tabNo;
                 }, function errorCallback(response) {
                     console.log(response.statusText);
                 });
@@ -84,9 +89,6 @@ angular
 
             $scope.info = function(department) {
                 organizationInfo(department);
-                var tabNo = department.shortName+department.id.charCodeAt(0)+department.id.charCodeAt(1);
-                $scope.tabs.push(tabNo);
-                $scope.activeTabNo = tabNo;
             };
             $scope.remove = function(index) {
                 if (index === 0) {

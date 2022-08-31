@@ -45,8 +45,6 @@ angular
             };
 
             function staffInfoGet(person) {
-
-
                 $http({
                     method: 'GET',
                     url: 'http://localhost:8080/departments/'+person.departmentId
@@ -58,6 +56,21 @@ angular
                         url: 'http://localhost:8080/organizations/'+ $scope.department.organizationId
                     }).then(function successCallback(response) {
                         $scope.organization = response.data;
+                        $http({
+                            method: 'GET',
+                            url: 'http://localhost:8080/jobs/'+person.jobTittleId
+                        }).then(function successCallback(response) {
+                            $scope.job = response.data;
+                            var tabNo = person;
+                            tabNo.organization= $scope.organization;
+                            tabNo.department= $scope.department;
+                            tabNo.job=$scope.job;
+                            tabNo.index= person.secondName+' '+person.id.substring(0,3)
+                            $scope.tabs.push(tabNo);
+                            $scope.activeTabNo = tabNo;
+                        }, function errorCallback(response) {
+                            console.log(response.statusText);
+                        });
                     }, function errorCallback(response) {
                         console.log(response.statusText);
                     });
@@ -66,14 +79,6 @@ angular
                     console.log(response.statusText);
                 });
 
-                $http({
-                    method: 'GET',
-                    url: 'http://localhost:8080/jobs/'+person.jobTittleId
-                }).then(function successCallback(response) {
-                    $scope.job = response.data;
-                }, function errorCallback(response) {
-                    console.log(response.statusText);
-                });
             };
 
             $scope.activeTabNo = 0;
@@ -81,9 +86,6 @@ angular
 
             $scope.info = function(person) {
                 staffInfoGet(person);
-                var tabNo = person.secondName+person.id.charCodeAt(0)+person.id.charCodeAt(2);
-                $scope.tabs.push(tabNo);
-                $scope.activeTabNo = tabNo;
             };
             $scope.remove = function(index) {
                 if (index === 0) {

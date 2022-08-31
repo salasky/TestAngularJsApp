@@ -38,8 +38,8 @@
         <div class="tablecontent">
           <ul class="nav nav-tabs">
 
-            <li ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab==activeTabNo]">
-              <a href="javascript:void(0)" ng-click="activeTab(tab)">{{tab}} <i class="glyphicon glyphicon-remove" ng-click="remove($index)"></i></a>
+            <li ng-repeat="tab in tabs" ng-class="{true:'active',false:''}[tab.index==activeTabNo]">
+              <a href="javascript:void(0)" ng-click="activeTab(tab)">{{tab.index}} <i class="glyphicon glyphicon-remove" ng-click="remove($index)"></i></a>
             </li>
           </ul>
           <div class="tab-content">
@@ -51,25 +51,25 @@
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Full name:</label>
                     <div class="col-lg-8">
-                      <input class="form-control" type="text" id="fullName" name="fullName" ng-model="organization.fullName " > </div>
+                      <input class="form-control" type="text" id="fullName" name="fullName" ng-model="tab.organization.fullName " > </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Short Name:</label>
                     <div class="col-lg-8">
-                      <input class="form-control" type="text" id="shortName" name="shortName" ng-model="organization.shortName"> </div>
+                      <input class="form-control" type="text" id="shortName" name="shortName" ng-model="tab.organization.shortName"> </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Supervisor:</label>
                     <div class="col-lg-8">
-                      <input class="form-control" type="text" id="supervisor" name="supervisor" ng-model="organization.supervisor "> </div>
+                      <input class="form-control" type="text" id="supervisor" name="supervisor" ng-model="tab.organization.supervisor "> </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Contact Numbers:</label>
                     <div class="col-lg-8">
-                      <textarea class="form-control" rows="2" name="contactNumbers" ng-model="organization.contactNumbers "></textarea>
+                      <textarea class="form-control" rows="2" name="contactNumbers" ng-model="tab.organization.contactNumbers "></textarea>
                     </div>
                   </div>
                   <button  ng-if="activeTabNo!=0" ng-click="openOrganizationModal()" class="info-button">Edit</button>
@@ -81,25 +81,25 @@
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Full name:</label>
                     <div class="col-lg-8">
-                      <input class="form-control" type="text" id="fullNameDep" name="fullNameDep" ng-model="department.fullName " > </div>
+                      <input class="form-control" type="text" id="fullNameDep" name="fullNameDep" ng-model="tab.department.fullName " > </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Short Name:</label>
                     <div class="col-lg-8">
-                      <input class="form-control" type="text" id="shortNameDep" name="shortName" ng-model="department.shortName"> </div>
+                      <input class="form-control" type="text" id="shortNameDep" name="shortName" ng-model="tab.department.shortName"> </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Supervisor:</label>
                     <div class="col-lg-8">
-                      <input class="form-control" type="text" id="supervisorDep" name="supervisor" ng-model="department.supervisor "> </div>
+                      <input class="form-control" type="text" id="supervisorDep" name="supervisor" ng-model="tab.department.supervisor "> </div>
                   </div>
 
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Contact Number:</label>
                     <div class="col-lg-8">
-                      <input class="form-control" type="text" id="contactDep" name="supervisor" ng-model="department.contactNumber "> </div>
+                      <input class="form-control" type="text" id="contactDep" name="supervisor" ng-model="tab.department.contactNumber "> </div>
                   </div>
                   <button  ng-if="activeTabNo!=0" ng-click="openDepartmentModal()" class="info-button">Edit</button>
                 </form>
@@ -110,7 +110,7 @@
                   <div class="form-group">
                     <label class="col-lg-3 control-label">Job name:</label>
                     <div class="col-lg-8">
-                      <input class="form-control" type="text" id="jobname" name="fullNameDep" ng-model="job.name " > </div>
+                      <input class="form-control" type="text" id="jobname" name="fullNameDep" ng-model="tab.job.name " > </div>
                   </div>
 
                   <button  ng-if="activeTabNo!=0" ng-click="openJobModal()" class="info-button">Edit</button>
